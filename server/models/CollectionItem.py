@@ -4,13 +4,13 @@ from config import db
 class CollectionItem(db.Model):
   __tablename__ = "collection_items"
 
-  id = db.Column(db.Int, primary_key=True)
-  title = db.Column(db.Str, nullable=False)
+  id = db.Column(db.Integer, primary_key=True)
+  title = db.Column(db.String, nullable=False)
   date_created = db.Column(db.Date)
   description = db.Column(db.String)
-  image = db.Column(db.Url)
-  reason_for_liking = db.Column(db.Str)
-  location_viewed = db.Column(db.Str, nullable=False)
+  item_img = db.Column(db.String)
+  reason_for_liking = db.Column(db.String)
+  location_viewed = db.Column(db.String)
 
   collection_id = db.Column(db.Int(), db.ForeignKey('collections.id'), nullable=False)
 
@@ -21,6 +21,6 @@ class CollectionItem(db.Model):
             f'Title {self.title}, '
             f'Date Created {self.date_created}, '
             f'Description "{self.description}", '
-            f'Image {self.image}, '
+            f'Image {self.item_img}, '
             f'Reason for liking {self.reason_for_liking}, '
             f'Location viewed {self.location_viewed}>')

@@ -5,4 +5,6 @@ class CollectionItemSchema(Schema):
   title = fields.Str()
   date_created = fields.Date()
   description = fields.Str()
-  image = fields.Url()
+  item_img = fields.Url()
+  reason_for_liking = fields.Str()
+  location_viewed = fields.Str()
