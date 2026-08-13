@@ -6,6 +6,7 @@ class Collection(db.Model):
 
   id = db.Column(db.Int, primary_key=True)
   title = db.Column(db.Str, nullable=False)
+  collection_img = db.Column(db.Url)
   description = db.Column(db.Str)
 
   user_id = db.Column(db.Integer(), db.ForeignKey('users.id'), nullable=False)
