@@ -31,4 +31,4 @@ class User(db.Model):
     )
 
   def __repr__(self):
-    return super().__repr__()
+    return f'<User {self.id}. Username: {self.username}. Email: {self.email}>'
