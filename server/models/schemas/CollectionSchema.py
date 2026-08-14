@@ -1,6 +1,7 @@
 from marshmallow import Schema, fields
 
-from .CollectionItemSchema import CollectionItemSchema
+from .ArtworkReviewSchema import ArtworkReviewSchema
+from .ArtistReviewSchema import ArtistReviewSchema
 
 class CollectionSchema(Schema):
   id = fields.Int()
@@ -9,4 +10,5 @@ class CollectionSchema(Schema):
   description = fields.Str()
   is_public = fields.Bool()
 
-  collection_items = fields.Nested(CollectionItemSchema, many=True)
+  artwork_reviews = fields.Nested(ArtworkReviewSchema, many=True)
+  artist_reviews = fields.Nested(ArtistReviewSchema, many=True)

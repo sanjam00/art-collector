@@ -13,7 +13,8 @@ class Collection(db.Model):
   user_id = db.Column(db.Integer(), db.ForeignKey('users.id'), nullable=False)
 
   user = db.relationship('User', back_populates='collections')
-  collection_items = db.relationship('CollectionItem', back_populates='collection', cascade="all, delete-orphan")
+  # artwork_reviews = db.relationship('ArtworkReview', back_populates='collection', cascade="all, delete-orphan")
+  # add join table relationship here
 
   def __repr__(self):
     return f'<Collection {self.id}. Description: "{self.description}">'
