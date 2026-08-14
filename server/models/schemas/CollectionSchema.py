@@ -7,5 +7,6 @@ class CollectionSchema(Schema):
   title = fields.Str()
   collection_img = fields.Url()
   description = fields.Str()
+  is_public = fields.Bool()
 
   collection_items = fields.Nested(CollectionItemSchema, many=True)
