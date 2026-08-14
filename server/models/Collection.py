@@ -1,5 +1,6 @@
 
 from config import db
+from sqlalchemy.ext.associationproxy import association_proxy
 
 class Collection(db.Model):
   __tablename__ = "collections"
@@ -13,8 +14,15 @@ class Collection(db.Model):
   user_id = db.Column(db.Integer(), db.ForeignKey('users.id'), nullable=False)
 
   user = db.relationship('User', back_populates='collections')
-  # artwork_reviews = db.relationship('ArtworkReview', back_populates='collection', cascade="all, delete-orphan")
-  # add join table relationship here
+  artwork_joins = db.relationship('ArtworkCollection', back_populates='collection', cascade='all, delete-orphan')
+  artist_joins = db.relationship('ArtistCollection', back_populates='collection', cascade='all, delete-orphan')
+
+  artwork_reviews = association_proxy('artwork_joins', 'artwork_review')
+  artist_reviews = association_proxy('artist_joins', 'artist_review')
 
   def __repr__(self):
-    return f'<Collection {self.id}. Description: "{self.description}">'
+    return (f'<Collection {self.id}, '
+            f'Title {self.title}, '
+            f'Image {self.collection_img}, '
+            f'Description "{self.description}", '
+            f'Public? {self.is_public}>')

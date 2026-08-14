@@ -19,13 +19,28 @@ class ArtworkReview(db.Model):
 
   user = db.relationship('User', back_populates='artwork_reviews')
 
-  # add join table relationship here
+  collection_joins = db.relationship('ArtworkCollection', back_populates='artwork_review', cascade='all, delete-orphan')
 
   def __repr__(self):
     return (f'<Artwork Review {self.id}, '
             f'Title {self.title}, '
-            f'Date Created {self.date_created}, '
+            f'Date completed {self.date_completed}, '
             f'Description "{self.description}", '
             f'Image {self.item_img}, '
             f'Reason for liking {self.reason_for_liking}, '
             f'Location viewed {self.location_viewed}>')
+
+# ~~ ArtworkCollection join table ~~
+class ArtworkCollection(db.Model):
+  __tablename__ = "artwork_collection_join"
+
+  id = db.Column(db.Integer, primary_key=True)
+  artwork_review_id = db.Column(db.Integer, db.ForeignKey('artwork_reviews.id'), nullable=False)
+  collection_id = db.Column(db.Integer, db.ForeignKey('collections.id'), nullable=False)
+
+  artwork_review = db.relationship('ArtworkReview', back_populates='collection_joins') # connects to ArtistReview
+  collection = db.relationship('Collection', back_populates='artwork_joins') # connects to Collection
+
+  # the combination of collection_id and artwork_review_id must be unique across the whole table
+  # (one review can't be in the same table twice)
+  __table_args__ = (db.UniqueConstraint('collection_id', 'artwork_review_id', name='uq_collection_artwork'),)

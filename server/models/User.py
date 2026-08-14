@@ -9,7 +9,9 @@ class User(db.Model):
   email = db.Column(db.String, nullable=False, unique=True)
   _password_hash = db.Column(db.String, nullable=False)
 
-  collections = db.relationship("Collection", back_populates="user", cascade="all, delete-orphan")
+  collections = db.relationship('Collection', back_populates='user', cascade='all, delete-orphan')
+  artwork_reviews = db.relationship('ArtworkReview', back_populates='user', cascade='all, delete-orphan')
+  artist_reviews = db.relationship('ArtistReview', back_populates='user', cascade='all, delete-orphan')
 
   # prevents the password hash from being viewed
   @hybrid_property
