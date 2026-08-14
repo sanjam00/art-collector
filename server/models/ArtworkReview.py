@@ -15,10 +15,10 @@ class ArtworkReview(db.Model):
   location_viewed = db.Column(db.String)
   # external_api_id = db.Column(db.String) add in later if incorporating ext api
 
+  # necessary to ensure a user can edit or delete only their own reviews. will come in handy if implementing collaborative collections later
   user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
 
   user = db.relationship('User', back_populates='artwork_reviews')
-
   collection_joins = db.relationship('ArtworkCollection', back_populates='artwork_review', cascade='all, delete-orphan')
 
   def __repr__(self):
