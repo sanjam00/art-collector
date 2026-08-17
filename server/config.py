@@ -41,3 +41,6 @@ migrate = Migrate(app, db)
 bcrypt = Bcrypt(app)
 jwt = JWTManager(app)
 api = Api(app)
+
+# Import models AFTER db has been created
+from models import *
