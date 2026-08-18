@@ -5,7 +5,7 @@ from flask_jwt_extended import create_access_token
 from models import User
 from models.schemas.UserSchema import UserSchema
 
-class Login(Resource):
+class LogIn(Resource):
 
   def post(self):
     username = request.json['username']

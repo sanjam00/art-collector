@@ -7,7 +7,7 @@ from config import db
 from models import User
 from models.schemas.UserSchema import UserSchema
 
-class Signup(Resource):
+class SignUp(Resource):
 
   # create new users
   def post(self):
