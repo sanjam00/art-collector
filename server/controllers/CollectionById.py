@@ -13,17 +13,22 @@ class CollectionById(Resource):
   # don't need to define many-to-many for GET bc it's already handled automatically
   @jwt_required()
   def get(self, collection_id):
-    # locate the collection using its id, making sure the user is verified
-    collec = Collection.query.filter(Collection.id == collection_id, Collection.user_id == int(get_jwt_identity())).first()
+    user_id = int(get_jwt_identity())
+    collec = Collection.query.filter_by(id=collection_id).first() # locates collection by id
 
     if not collec:
-      return {'errors': '404 Collection not found'}, 404
+      return {'errors': ['404 Collection not found']}, 404
+
+    # allows access if it's their collection or if it's public, and denies when both cases are true
+    if collec.user_id != user_id and not collec.is_public:
+      return {'errors': ['404 Collection not found']}, 404  # 404 not 403, to avoid confirming private collections exist
 
     return CollectionSchema().dump(collec), 200
 
   # edit a collection
   @jwt_required()
   def patch(self, collection_id):
+    # identitify user, ensure they're editing only their own collections
     collec = Collection.query.filter(Collection.id == collection_id, Collection.user_id == int(get_jwt_identity())).first()
 
     if not collec:
@@ -39,6 +44,8 @@ class CollectionById(Resource):
       collec.description = request_json['description']
     if 'is_public' in request_json:
       collec.is_public = request_json['is_public']
+    # no username bc a user shouldn't be able to change who owns the collection 
+    #   (at least not for the MVP)
 
     db.session.commit()
 

@@ -10,6 +10,7 @@ class Collection(db.Model):
   collection_img = db.Column(db.String)
   description = db.Column(db.String)
   is_public = db.Column(db.Boolean, default=False, nullable=False)
+  username = db.Column(db.String)
 
   user_id = db.Column(db.Integer(), db.ForeignKey('users.id'), nullable=False)
 

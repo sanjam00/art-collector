@@ -9,6 +9,7 @@ class CollectionSchema(Schema):
   collection_img = fields.Url()
   description = fields.Str()
   is_public = fields.Bool()
+  username = fields.Str(attribute='user.username', dump_only=True)
 
   artwork_reviews = fields.Nested(ArtworkReviewSchema, many=True)
   artist_reviews = fields.Nested(ArtistReviewSchema, many=True)
