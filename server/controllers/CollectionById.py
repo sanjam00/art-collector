@@ -28,7 +28,7 @@ class CollectionById(Resource):
   # edit a collection
   @jwt_required()
   def patch(self, collection_id):
-    # identitify user, ensure they're editing only their own collections
+    # identify user, ensure they're editing only their own collections
     collec = Collection.query.filter(Collection.id == collection_id, Collection.user_id == int(get_jwt_identity())).first()
 
     if not collec:

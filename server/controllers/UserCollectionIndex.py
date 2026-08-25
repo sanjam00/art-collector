@@ -7,7 +7,7 @@ from config import db
 from models import Collection
 from models.schemas.CollectionSchema import CollectionSchema
 
-class CollectionIndex(Resource):
+class UserCollectionIndex(Resource):
 
   # get all trips
   @jwt_required()
