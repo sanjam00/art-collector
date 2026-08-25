@@ -6,7 +6,7 @@ from config import db
 from models import ArtworkReview
 from models.schemas.ArtworkReviewSchema import ArtworkReviewSchema
 
-class ArtworkById(Resource):
+class ArtworkReviewById(Resource):
 
   # get an artwork review by id
   @jwt_required()

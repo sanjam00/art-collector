@@ -7,7 +7,7 @@ from config import db
 from models import Collection, ArtworkReview
 from models.schemas.ArtworkReviewSchema import ArtworkReviewSchema
 
-class ArtworkIndex(Resource):
+class ArtworkReviewIndex(Resource):
 
   # don't need - collectionbyid displays reviews
   # get all artwork reviews
