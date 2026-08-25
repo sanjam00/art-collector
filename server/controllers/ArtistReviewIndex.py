@@ -4,12 +4,12 @@ from flask import request
 from sqlalchemy.exc import IntegrityError
 
 from config import db
-from models import ArtworkReview
-from models.schemas.ArtworkReviewSchema import ArtworkReviewSchema
+from models import ArtistReview
+from models.schemas.ArtistReviewSchema import ArtistReviewSchema
 
-class ArtworkReviewIndex(Resource):
+class ArtistReviewIndex(Resource):
 
-   # get all of the current user's artwork reviews (their full review library)
+  # get all of the current user's artist reviews (their full review library)
   @jwt_required()
   def get(self):
     user_id = int(get_jwt_identity())
@@ -17,34 +17,32 @@ class ArtworkReviewIndex(Resource):
     page = request.args.get('page', 1, type=int)
     per_page = request.args.get('per_page', 15, type=int)
 
-    pagination = ArtworkReview.query.filter(
-      ArtworkReview.user_id == user_id
-    ).order_by(ArtworkReview.id.desc()).paginate(page=page, per_page=per_page, error_out=False)
+    pagination = ArtistReview.query.filter(
+      ArtistReview.user_id == user_id
+    ).order_by(ArtistReview.id.desc()).paginate(page=page, per_page=per_page, error_out=False)
 
     reviews = pagination.items
 
     return {
-      'reviews': ArtworkReviewSchema(many=True).dump(reviews),
+      'reviews': ArtistReviewSchema(many=True).dump(reviews),
       'total_pages': pagination.pages,
       'current_page': page,
       'has_next': pagination.has_next,
       'has_prev': pagination.has_prev
     }, 200
 
-  # create a new artwork review
+  # create a new artist review
   @jwt_required()
   def post(self):
     user_id = int(get_jwt_identity())
     request_json = request.get_json()
 
-    if not request_json.get('title', '').strip():
-      return {'errors': ['Title is required']}, 422
+    if not request_json.get('name', '').strip():
+      return {'errors': ['Name is required']}, 422
 
-    review = ArtworkReview(
+    review = ArtistReview(
       user_id = user_id,
-      title = request_json.get('title'),
-      artist = request_json.get('artist'),
-      date_completed = request_json.get('date_completed'),
+      name = request_json.get('name'),
       description = request_json.get('description'),
       item_img = request_json.get('item_img'),
       reason_for_liking = request_json.get('reason_for_liking'),
@@ -54,7 +52,7 @@ class ArtworkReviewIndex(Resource):
     try:
       db.session.add(review)
       db.session.commit()
-      return ArtworkReviewSchema().dump(review), 201
+      return ArtistReviewSchema().dump(review), 201
     except IntegrityError:
       db.session.rollback()
       return {'errors': ['422 Unprocessable Entity']}, 422
