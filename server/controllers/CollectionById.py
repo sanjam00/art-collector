@@ -29,7 +29,8 @@ class CollectionById(Resource):
   @jwt_required()
   def patch(self, collection_id):
     # identify user, ensure they're editing only their own collections
-    collec = Collection.query.filter(Collection.id == collection_id, Collection.user_id == int(get_jwt_identity())).first()
+    user_id = int(get_jwt_identity())
+    collec = Collection.query.filter(Collection.id == collection_id, Collection.user_id == user_id).first()
 
     if not collec:
       return {'errors': '404 Collection not found'}, 404
@@ -54,7 +55,8 @@ class CollectionById(Resource):
   # delete a collection
   @jwt_required()
   def delete(self, collection_id):
-    collec = Collection.query.filter(Collection.id == collection_id, Collection.user_id == int(get_jwt_identity())).first()
+    user_id = int(get_jwt_identity())
+    collec = Collection.query.filter(Collection.id == collection_id, Collection.user_id == user_id).first()
 
     if not collec:
       return {'errors': '404 Collection not found'}, 404
@@ -62,4 +64,4 @@ class CollectionById(Resource):
     db.session.delete(collec)
     db.session.commit()
 
-    return {'200': 'Collection successfully deleted'}, 200
+    return {'message': 'Collection successfully deleted'}, 200
