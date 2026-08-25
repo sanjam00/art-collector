@@ -14,23 +14,32 @@ class UserCollectionIndex(Resource):
   def get(self):
     user_id = int(get_jwt_identity())
 
-    # pagination
     page = request.args.get('page', 1, type=int)
     per_page = request.args.get('per_page', 10, type=int)
+    search = request.args.get('search', '', type=str)
+    sort = request.args.get('sort', 'newest', type=str)
 
-    # dynamic pagination
-    pagination = Collection.query.filter(
-      Collection.user_id == user_id # only get collections belonging to that user
-    ).paginate(page=page, per_page=per_page, error_out=False)
+    query = Collection.query.filter(Collection.user_id == user_id)
 
+    if search:
+        query = query.filter(Collection.title.ilike(f'%{search}%'))
+
+    if sort == 'oldest':
+        query = query.order_by(Collection.id.asc())
+    elif sort == 'title':
+        query = query.order_by(Collection.title.asc())
+    else:  # 'newest' default
+        query = query.order_by(Collection.id.desc())
+
+    pagination = query.paginate(page=page, per_page=per_page, error_out=False)
     collections = pagination.items
 
     return {
-      'collections': CollectionSchema(many=True).dump(collections),
-      'total_pages': pagination.pages,
-      'current_page': page,
-      'has_next': pagination.has_next,
-      'has_prev': pagination.has_prev
+        'collections': CollectionSchema(many=True).dump(collections),
+        'total_pages': pagination.pages,
+        'current_page': page,
+        'has_next': pagination.has_next,
+        'has_prev': pagination.has_prev
     }, 200
 
   # add a new collection with only title- create-then-edit flow

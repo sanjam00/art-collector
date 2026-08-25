@@ -19,7 +19,7 @@ from controllers.ArtistCollectionLink import ArtistCollectionLink
 api.add_resource(CollectionFeed, '/')
 
 api.add_resource(SignUp, '/signup')
-api.add_resource(LogIn, 'login')
+api.add_resource(LogIn, '/login')
 api.add_resource(WhoAmI, '/whoami')
 
 api.add_resource(UserCollectionIndex, '/collections')

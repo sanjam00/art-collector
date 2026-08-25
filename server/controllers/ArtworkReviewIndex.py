@@ -16,19 +16,32 @@ class ArtworkReviewIndex(Resource):
 
     page = request.args.get('page', 1, type=int)
     per_page = request.args.get('per_page', 15, type=int)
+    search = request.args.get('search', '', type=str)
+    sort = request.args.get('sort', 'newest', type=str)
 
-    pagination = ArtworkReview.query.filter(
-      ArtworkReview.user_id == user_id
-    ).order_by(ArtworkReview.id.desc()).paginate(page=page, per_page=per_page, error_out=False)
+    query = ArtworkReview.query.filter(ArtworkReview.user_id == user_id)
 
+    if search:
+        query = query.filter(ArtworkReview.title.ilike(f'%{search}%'))
+
+    if sort == 'oldest':
+        query = query.order_by(ArtworkReview.id.asc())
+    elif sort == 'title':
+        query = query.order_by(ArtworkReview.title.asc())
+    elif sort == 'date_completed':
+        query = query.order_by(ArtworkReview.date_completed.desc())
+    else:  # 'newest' default
+        query = query.order_by(ArtworkReview.id.desc())
+
+    pagination = query.paginate(page=page, per_page=per_page, error_out=False)
     reviews = pagination.items
 
     return {
-      'reviews': ArtworkReviewSchema(many=True).dump(reviews),
-      'total_pages': pagination.pages,
-      'current_page': page,
-      'has_next': pagination.has_next,
-      'has_prev': pagination.has_prev
+        'reviews': ArtworkReviewSchema(many=True).dump(reviews),
+        'total_pages': pagination.pages,
+        'current_page': page,
+        'has_next': pagination.has_next,
+        'has_prev': pagination.has_prev
     }, 200
 
   # create a new artwork review
