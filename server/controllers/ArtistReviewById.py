@@ -31,7 +31,7 @@ class ArtistReviewById(Resource):
     request_json = request.get_json()
 
     if 'name' in request_json:
-      review.title = request_json['name']
+      review.name = request_json['name']
     if 'description' in request_json:
       review.description = request_json['description']
     if 'item_img' in request_json:
