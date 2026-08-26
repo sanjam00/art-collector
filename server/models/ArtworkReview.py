@@ -8,7 +8,7 @@ class ArtworkReview(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   title = db.Column(db.String, nullable=False)
   artist = db.Column(db.String)
-  date_completed = db.Column(db.Date)
+  date_completed = db.Column(db.String)
   description = db.Column(db.String)
   item_img = db.Column(db.String)
   reason_for_liking = db.Column(db.String)

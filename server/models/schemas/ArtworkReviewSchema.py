@@ -4,7 +4,7 @@ class ArtworkReviewSchema(Schema):
   id = fields.Int()
   title = fields.Str()
   artist = fields.Str()
-  date_completed = fields.Date()
+  date_completed = fields.Str()
   description = fields.Str()
   item_img = fields.Url()
   reason_for_liking = fields.Str()

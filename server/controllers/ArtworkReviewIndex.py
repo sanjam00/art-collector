@@ -53,17 +53,12 @@ class ArtworkReviewIndex(Resource):
 
     if not request_json.get('title', '').strip():
       return {'errors': ['Title is required']}, 422
-
-    try:
-      date_completed = datetime.strptime(request_json.get('date_completed'), '%Y-%m-%d').date()
-    except:
-      return {'errors': ['Invalid date format, expected YYYY-MM-DD']}, 422
-
+    
     review = ArtworkReview(
       user_id = user_id,
       title = request_json.get('title'),
       artist = request_json.get('artist'),
-      date_completed = date_completed,
+      date_completed = request_json.get('date_completed'),
       description = request_json.get('description'),
       item_img = request_json.get('item_img'),
       reason_for_liking = request_json.get('reason_for_liking'),
