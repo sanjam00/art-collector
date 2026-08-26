@@ -53,4 +53,4 @@ class ArtistCollectionLink(Resource):
     db.session.delete(link)
     db.session.commit()
 
-    return CollectionSchema().dump(collec), 200
+    return {'message': 'Review successfully removed from collection'}
