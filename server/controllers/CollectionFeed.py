@@ -8,7 +8,7 @@ from models.schemas.CollectionSummarySchema import CollectionSummarySchema
 class CollectionFeed(Resource):
 
   # get other users collections, using collectionsummaryschema as not to fetch unnecessary data
-  @jwt_required
+  @jwt_required()
   def get(self):
     page = request.args.get('page', 1, type=int)
     per_page = request.args.get('per_page', 10, type=int)
@@ -21,7 +21,7 @@ class CollectionFeed(Resource):
 
     return {
       'collections': CollectionSummarySchema(many=True).dump(collecs),
-      'total_pages': pagination.items,
+      'total_pages': pagination.pages,
       'current_page': page,
       'has_next': pagination.has_next,
       'has_prev': pagination.has_prev
