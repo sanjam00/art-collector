@@ -12,6 +12,7 @@ export class ErrorBoundary extends Component{
     console.error("Caught by ErrorBoundary:", error, info);
   }
 
+  // add bootstap alert error handling
   render() {
     if (this.state.hasError) {
       return (
