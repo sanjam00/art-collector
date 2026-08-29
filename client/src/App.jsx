@@ -1,9 +1,15 @@
 import { ErrorBoundary } from "./components/ErrorBoundary";
+import { BrowserRouter, Routes, Route } from 'react-router'
+import LoginPage from "./pages/LoginPage";
 
 export default function App() {
   return (
     <ErrorBoundary>
-      {/* routes go here */}
+      <BrowserRouter>
+        <Routes>
+          < Route path="/login" element={ <LoginPage /> } />
+        </Routes>
+      </BrowserRouter>
     </ErrorBoundary>
   )
 }

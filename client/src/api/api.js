@@ -5,11 +5,11 @@ const BASE_URL = 'http://127.0.0.1:5000'
 
 export async function apiFetch(endpoint, token, options = {}) {
   const response = await fetch(`${BASE_URL}${endpoint}`, {
-    ...options,
+    ... options,
     headers: {
       'Content-Type': 'application/json',
-      ...(token && {'Authorization': `Bearer ${token}`}),
-      ...options.headers,
+      ... (token && {'Authorization': `Bearer ${token}`}),
+      ... options.headers,
     }
   })
 
