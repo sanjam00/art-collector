@@ -34,4 +34,14 @@ class SignUp(Resource):
       access_token = create_access_token(identity=user.id)
       return make_response(jsonify(token=access_token, user=UserSchema().dump(user)), 200)
     except IntegrityError:
-      return {'errors': ['422 Unprocessable Entity']}, 422
+      db.session.rollback()
+
+      username_exists = User.query.filter_by(username=username).first() is not None
+      email_exists = User.query.filter_by(email=email).first() is not None
+
+      if username_exists:
+        return {'errors': 'Username is already taken'}, 422
+      if email_exists:
+        return {'errors': 'Email is already taken'}, 422
+
+      return {'errors': 'User could not be created'}, 422

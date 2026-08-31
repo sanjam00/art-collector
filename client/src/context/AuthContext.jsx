@@ -31,6 +31,7 @@ export function AuthProvider({children}) {
     });
     setToken(data.token);
     setUser(data.user);
+    return data;
   }
 
   function logout() {

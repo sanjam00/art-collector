@@ -1,4 +1,4 @@
-.login-page {
+.signup-page {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -9,8 +9,8 @@
   color: var(--dark-gray);
 }
 
-.login-header,
-.login-page * {
+.signup-header,
+.signup-page * {
   font-family: var(--custom-font-body);
 }
 
@@ -21,21 +21,22 @@
   letter-spacing: 0.04em;
 }
 
-.login-form-container {
+.signup-form-container {
   width: min(100%, 420px);
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.login-header {
+.signup-header {
   width: 100%;
   margin: 0 0 1rem;
+  color: var(--dark-gray);
   font-size: 2rem;
   text-align: center;
 }
 
-.login-form {
+.signup-form {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -47,13 +48,13 @@
   box-shadow: 0 6px 18px rgba(179, 180, 183, 0.08);
 }
 
-.login-field {
+.signup-field {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
 
-.login-field label {
+.signup-field label {
   color: var(--dark-gray);
   font-size: 1rem;
 }
@@ -75,7 +76,7 @@
   box-shadow: 0 0 0 3px rgba(155, 146, 160, 0.2);
 }
 
-.login-button {
+.signup-button {
   padding: 0.8rem 1.25rem;
   border: none;
   border-radius: 5px;
@@ -88,16 +89,16 @@
   transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
-.login-button:hover {
+.signup-button:hover {
   background-color: var(--dark-accent);
 }
 
-.login-button:disabled {
+.signup-button:disabled {
   opacity: 0.75;
   cursor: not-allowed;
 }
 
-.login-message {
+.signup-message {
   width: 100%;
   margin: 0 0 0.75rem;
   text-align: center;
@@ -112,17 +113,17 @@
   color: #2e7d32;
 }
 
-.signup-prompt {
+.login-prompt {
   margin: 1rem 0 0;
   color: var(--dark-gray);
   text-align: center;
 }
 
-.signup-prompt a {
+.login-prompt a {
   color: var(--dark-accent);
   text-decoration: none;
 }
 
-.signup-prompt a:hover {
+.login-prompt a:hover {
   text-decoration: underline;
 }

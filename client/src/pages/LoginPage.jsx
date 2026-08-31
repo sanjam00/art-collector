@@ -30,7 +30,6 @@ export default function LoginPage() {
           navigate('/') // navigate to collectionFeed
         }, 3000)
       }
-      console.log('Response. Attempting to nav')
     } catch(err) {
       setError(err.message);
       console.log(err);
