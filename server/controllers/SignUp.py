@@ -40,8 +40,8 @@ class SignUp(Resource):
       email_exists = User.query.filter_by(email=email).first() is not None
 
       if username_exists:
-        return {'errors': 'Username is already taken'}, 422
+          return {'errors': ['Username is already taken']}, 422
       if email_exists:
-        return {'errors': 'Email is already taken'}, 422
+          return {'errors': ['Email is already registered']}, 422
 
-      return {'errors': 'User could not be created'}, 422
+      return {'errors': ['User could not be created']}, 422
