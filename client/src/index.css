@@ -25,6 +25,7 @@
   font-display: swap;
 }
 
+/* currently unused, would replace Nalte Sans if used */
 @font-face {
   font-family: 'Rellion';
   src: url('./styles/fonts/rellion/Rellion.otf') format(opentype);
