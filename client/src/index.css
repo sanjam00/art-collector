@@ -1,0 +1,46 @@
+:root {
+  --dark-gray: #45474a; /* font color */
+  --lilac: #9b92a0; /* backgrounds */
+  --golden-accent: #c7a005; /* buttons and icons */
+  --dark-accent: #9f8004; /* selected buttons and icons */
+  --custom-font-title: 'Vaelia', "Times New Roman", sans-serif;
+  --custom-font-body: 'Nalte Sans', Trebuchet, sans-serif
+}
+
+/* font for the site title only */
+@font-face {
+  font-family: 'Vaelia';
+  src: url('./styles/fonts/vaelia-demo/Vaelia\ DEMO.otf') format(opentype);
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* for headers */
+@font-face {
+  font-family: 'Nalte Sans';
+  src: url('./styles/fonts/nalte-sans-demo/NalteSansDemo-Regular.ttf') format(truetype);
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Rellion';
+  src: url('./styles/fonts/rellion/Rellion.otf') format(opentype);
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+#site-name {
+  color: var(--dark-gray);
+  font-family: var(--custom-font-title);
+  font-size: 3em;
+}
+
+h1{
+  color: var(--dark-gray);
+  font-family: var(--custom-font-body);
+  /* font-weight: 100; */
+}

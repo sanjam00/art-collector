@@ -1,6 +1,8 @@
 import { useAuth } from "../context/AuthContext";
 import { useState } from "react";
 import { useNavigate, Link } from "react-router";
+import "../styles/LoginPage.css"
+import "../index.css"
 
 export default function LoginPage() {
   const [username, setUsername] = useState('');
@@ -40,47 +42,48 @@ export default function LoginPage() {
   // add bootstap classes
   return (
     <div className="login-page">
-      <p className=".h1" id="site-name">Art Collector</p>
+      <h1 id="site-name">Art Collector</h1>
 
-      <h1>Log In</h1>
+      <div className="login-form-container">
+        <h2 className="login-header">Log In</h2>
 
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      {successMsg && <p style={{ color: 'green' }}>{successMsg}</p>}
+        {error && <p className="login-message error-message">Login failed, please try again.</p>}
+        {successMsg && <p className="login-message success-message">{successMsg}</p>}
 
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="username">Username</label>
-          <input
-            className="form-control"
-            id="username"
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-        </div>
+        <form className="login-form" onSubmit={handleSubmit}>
+          <div className="login-field">
+            <label htmlFor="username">Username</label>
+            <input
+              className="form-control"
+              id="username"
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+            />
+          </div>
 
-        <div>
-          <label htmlFor="password">Password</label>
-          <input
-            className="form-control"
-            id="password"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
+          <div className="login-field">
+            <label htmlFor="password">Password</label>
+            <input
+              className="form-control"
+              id="password"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
 
-        <button className="btn" type="submit" disabled={loading}>
-          {loading ? 'Logging in...' : 'Log In'}
-        </button>
-      </form>
+          <button className="login-button" type="submit" disabled={loading}>
+            {loading ? 'Logging in...' : 'Log In'}
+          </button>
+        </form>
 
-      <p>
-        Don't have an account? <Link to="/signup">Sign up</Link>
-      </p>
-
+        <p className="signup-prompt">
+          Don't have an account? <Link to="/signup">Sign up</Link>
+        </p>
+      </div>
     </div>
   )
 }
