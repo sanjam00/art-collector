@@ -7,6 +7,7 @@ export default function LoginPage() {
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [successMsg, setSuccessMsg] = useState('');
 
   const { login } = useAuth();
   const navigate = useNavigate();
@@ -15,13 +16,22 @@ export default function LoginPage() {
     e.preventDefault();
     setError('');
     setLoading(true);
+    setSuccessMsg('');
 
     try {
-      await login(username, password);
-      // navigate('/') // navigate to collectionFeed
-    } catch(error) {
-      setError(error.message);
-      console.log(error);
+      const response = await login(username, password);
+
+      // check if response includes a token
+      if (response?.token) {
+        setSuccessMsg('Login successful, navigating to home page...')
+        setTimeout(() => {
+          navigate('/') // navigate to collectionFeed
+        }, 3000)
+      }
+      console.log('Response. Attempting to nav')
+    } catch(err) {
+      setError(err.message);
+      console.log(err);
     } finally {
       setLoading(false);
     }
@@ -30,16 +40,18 @@ export default function LoginPage() {
   // add bootstap classes
   return (
     <div className="login-page">
-      <h1 id="site-name">Art Collector</h1>
+      <p className=".h1" id="site-name">Art Collector</p>
 
       <h1>Log In</h1>
 
       {error && <p style={{ color: 'red' }}>{error}</p>}
+      {successMsg && <p style={{ color: 'green' }}>{successMsg}</p>}
 
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="username">Username</label>
           <input
+            className="form-control"
             id="username"
             type="text"
             value={username}
@@ -51,6 +63,7 @@ export default function LoginPage() {
         <div>
           <label htmlFor="password">Password</label>
           <input
+            className="form-control"
             id="password"
             type="password"
             value={password}
@@ -59,7 +72,7 @@ export default function LoginPage() {
           />
         </div>
 
-        <button type="submit" disabled={loading}>
+        <button className="btn" type="submit" disabled={loading}>
           {loading ? 'Logging in...' : 'Log In'}
         </button>
       </form>

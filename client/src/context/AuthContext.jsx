@@ -16,6 +16,7 @@ export function AuthProvider({children}) {
     });
     setToken(data.token);
     setUser(data.user);
+    return data;
   }
 
   async function signup(username, email, password, passwordConfirmation) {
