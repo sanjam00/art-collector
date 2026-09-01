@@ -2,7 +2,16 @@
 
 import { apiFetch } from "../api/api";
 
+// CollectionFeed
+
+// no params bc no sort/filter for the MVP
+export function getCollectionFeed(params = {}) {
+  return apiFetch(`/`);
+}
+
 // UserCollectionIndex
+
+// needs params due to sort/filter
 export function getMyCollections(params = {}) {
   const query = new URLSearchParams(params).toString();
   return apiFetch(`/collections?${query}`);

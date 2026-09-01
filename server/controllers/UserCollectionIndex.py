@@ -22,14 +22,14 @@ class UserCollectionIndex(Resource):
     query = Collection.query.filter(Collection.user_id == user_id)
 
     if search:
-        query = query.filter(Collection.title.ilike(f'%{search}%'))
+      query = query.filter(Collection.title.ilike(f'%{search}%'))
 
     if sort == 'oldest':
-        query = query.order_by(Collection.id.asc())
+      query = query.order_by(Collection.id.asc())
     elif sort == 'title':
-        query = query.order_by(Collection.title.asc())
+      query = query.order_by(Collection.title.asc())
     else:  # 'newest' default
-        query = query.order_by(Collection.id.desc())
+      query = query.order_by(Collection.id.desc())
 
     pagination = query.paginate(page=page, per_page=per_page, error_out=False)
     collections = pagination.items

@@ -22,14 +22,14 @@ class ArtistReviewIndex(Resource):
     query = ArtistReview.query.filter(ArtistReview.user_id == user_id)
 
     if search:
-        query = query.filter(ArtistReview.name.ilike(f'%{search}%'))
+      query = query.filter(ArtistReview.name.ilike(f'%{search}%'))
 
     if sort == 'oldest':
-        query = query.order_by(ArtistReview.id.asc())
+      query = query.order_by(ArtistReview.id.asc())
     elif sort == 'name':
-        query = query.order_by(ArtistReview.name.asc())
+      query = query.order_by(ArtistReview.name.asc())
     else:  # 'newest' default
-        query = query.order_by(ArtistReview.id.desc())
+      query = query.order_by(ArtistReview.id.desc())
 
     pagination = query.paginate(page=page, per_page=per_page, error_out=False)
     reviews = pagination.items
