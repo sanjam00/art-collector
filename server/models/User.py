@@ -7,6 +7,7 @@ class User(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   username = db.Column(db.String, nullable=False, unique=True)
   email = db.Column(db.String, nullable=False, unique=True)
+  profile_img = db.Column(db.String)
   _password_hash = db.Column(db.String, nullable=False)
 
   collections = db.relationship('Collection', back_populates='user', cascade='all, delete-orphan')
