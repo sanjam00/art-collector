@@ -35,6 +35,7 @@ def make_users():
     user = User(
       username=fake.unique.user_name(),
       email=fake.unique.email(),
+      profile_img=fake.image_url(),
     )
     # go through the setter so it actually gets hashed
     user.password_hash = "password123"
