@@ -35,11 +35,11 @@ class ArtistReviewIndex(Resource):
     reviews = pagination.items
 
     return {
-        'reviews': ArtistReviewSchema(many=True).dump(reviews),
-        'total_pages': pagination.pages,
-        'current_page': page,
-        'has_next': pagination.has_next,
-        'has_prev': pagination.has_prev
+      'reviews': ArtistReviewSchema(many=True).dump(reviews),
+      'total_pages': pagination.pages,
+      'current_page': page,
+      'has_next': pagination.has_next,
+      'has_prev': pagination.has_prev
     }, 200
 
   # create a new artist review

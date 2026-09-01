@@ -11,13 +11,14 @@ export function getArtworkReview (params = {}) {
   return apiFetch(`/artwork-reviews?${query}`);
 }
 
-export function createArtworkReview ( title, artist, date_completed, item_img, reason_for_liking, location_viewed ) {
+export function createArtworkReview ( title, artist, date_completed, description, item_img, reason_for_liking, location_viewed ) {
   return apiFetch(`/artwork-reviews`, {
     method: 'POST',
     body: JSON.stringify({ 
       title: title,
       artist: artist,
       date_completed: date_completed, 
+      description: description,
       item_img: item_img,
       reason_for_liking: reason_for_liking,
       location_viewed: location_viewed,
