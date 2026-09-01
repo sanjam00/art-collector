@@ -5,7 +5,7 @@ import { apiFetch } from "../api/api";
 // CollectionFeed
 
 // no params bc no sort/filter for the MVP
-export function getCollectionFeed(params = {}) {
+export function getCollectionFeed() {
   return apiFetch(`/`);
 }
 
@@ -17,8 +17,8 @@ export function getMyCollections(params = {}) {
   return apiFetch(`/collections?${query}`);
 }
 
-export function createCollection(title) {
-  return apiFetch('/collections', {
+export function createCollection(token, title) {
+  return apiFetch('/collections', token, {
     method: 'POST',
     body: JSON.stringify({ title }),
   });
@@ -29,15 +29,15 @@ export function getCollectionById(id) {
   return apiFetch(`/collections/${id}`);
 }
 
-export function editCollection(id, updates) {
-  return apiFetch(`/collections/${id}`, {
+export function editCollection(id, token, updates) {
+  return apiFetch(`/collections/${id}`, token, {
     method: 'PATCH',
     body: JSON.stringify( updates ),
   });
 }
 
-export function deleteCollection(id) {
-  return apiFetch(`/collections/${id}`, {
+export function deleteCollection(id, token) {
+  return apiFetch(`/collections/${id}`, token, {
     method: 'DELETE'
   });
 }

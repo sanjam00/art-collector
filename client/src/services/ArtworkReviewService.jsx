@@ -11,17 +11,11 @@ export function getArtworkReview (params = {}) {
   return apiFetch(`/artwork-reviews?${query}`);
 }
 
-export function createArtworkReview ( title, artist, date_completed, description, item_img, reason_for_liking, location_viewed ) {
-  return apiFetch(`/artwork-reviews`, {
+export function createArtworkReview( token, title, artist, date_completed, description, item_img, reason_for_liking, location_viewed ) {
+  return apiFetch(`/artwork-reviews`, token, {
     method: 'POST',
     body: JSON.stringify({ 
-      title: title,
-      artist: artist,
-      date_completed: date_completed, 
-      description: description,
-      item_img: item_img,
-      reason_for_liking: reason_for_liking,
-      location_viewed: location_viewed,
+      title, artist, date_completed, description, item_img, reason_for_liking, location_viewed
     }),
   })
 }
@@ -31,15 +25,15 @@ export function getArtworkReviewById ( id ) {
   return apiFetch(`/artwork-reviews/${id}`)
 }
 
-export function editArtworkReviewById ( id, updates ) {
-  return apiFetch(`/artwork-reviews/${id}`, {
+export function editArtworkReviewById( id, token, updates ) {
+  return apiFetch(`/artwork-reviews/${id}`, token, {
     method: 'PATCH',
     body: JSON.stringify( updates )
   })
 }
 
-export function deleteArtworkReviewById ( id ) {
-  return apiFetch(`/artwork-reviews/${id}`, {
+export function deleteArtworkReviewById(id, token) {
+  return apiFetch(`/artwork-reviews/${id}`, token, {
     method: 'DELETE',
   })
 }
