@@ -16,7 +16,7 @@ from controllers.ArtistCollectionLink import ArtistCollectionLink
 
 # landing page/home page
 # alternatively, landing page is user's own collections to avoid a typical social media setup
-api.add_resource(CollectionFeed, '/')
+api.add_resource(CollectionFeed, '/home')
 
 api.add_resource(SignUp, '/signup')
 api.add_resource(LogIn, '/login')

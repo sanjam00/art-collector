@@ -15,7 +15,7 @@ export default function App() {
           < Route path="/login" element={ <LoginPage /> } />
           < Route path="/signup" element={ <SignupPage />} />
           < Route
-            path="/"
+            path="/home"
             element={
               <ProtectedRoute>
                 {/* home page leads to collectionfeed.py */}

@@ -27,8 +27,8 @@ export default function LoginPage() {
       if (response?.token) {
         setSuccessMsg('Login successful, navigating to home page...')
         setTimeout(() => {
-          navigate('/') // navigate to collectionFeed
-        }, 2200)
+          navigate('/home') // navigate to collectionFeed
+        }, 2000)
       }
     } catch(err) {
       setError(err.message);
