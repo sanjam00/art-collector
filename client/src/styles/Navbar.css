@@ -1,0 +1,12 @@
+
+.icon-hover-state {
+  display: none;
+}
+
+.icon-hover:hover .icon-default {
+  display: none;
+}
+
+.icon-hover:hover .icon-hover-state {
+  display: inline-block;
+}
