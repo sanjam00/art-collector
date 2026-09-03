@@ -6,15 +6,15 @@ import { apiFetch } from "../api/api";
 
 // no params bc no sort/filter for the MVP
 export function getCollectionFeed(token) {
-  return apiFetch(`/home`, token, {methods: 'GET' });
+  return apiFetch(`/home`, token);
 }
 
 // UserCollectionIndex
 
 // needs params due to sort/filter
-export function getMyCollections(params = {}) {
+export function getMyCollections(token, params = {}) {
   const query = new URLSearchParams(params).toString();
-  return apiFetch(`/collections?${query}`);
+  return apiFetch(`/collections?${query}`, token);
 }
 
 export function createCollection(token, title) {
@@ -25,8 +25,8 @@ export function createCollection(token, title) {
 }
 
 // CollectionById
-export function getCollectionById(id) {
-  return apiFetch(`/collections/${id}`);
+export function getCollectionById(id, token) {
+  return apiFetch(`/collections/${id}`, token);
 }
 
 export function editCollection(id, token, updates) {

@@ -8,6 +8,7 @@ import NotFoundPage from "./pages/NotFoundPage";
 import SignupPage from "./pages/SignupPage";
 import HomeFeed from "./pages/HomeFeed";
 import "./App.css"
+import MyCollectionsPage from "./pages/MyCollectionsPage";
 
 export default function App() {
   const { token } = useAuth();
@@ -27,6 +28,14 @@ export default function App() {
               <ProtectedRoute>
                 {/* home page leads to collectionfeed.py */}
                 <HomeFeed />
+              </ProtectedRoute>
+            }
+          />
+          < Route
+            path="/my-collections"
+            element={
+              <ProtectedRoute>
+                <MyCollectionsPage />
               </ProtectedRoute>
             }
           />

@@ -25,7 +25,7 @@ export default function NavBar() {
           <img className="bi bi-house-door-fill icon-hover-state" src={homeFillIcon} />
         </NavLink>
 
-        <NavLink to='/whoami' className="icon-hover"> {/* not setup yet */}
+        <NavLink to='/my-collections' className="icon-hover"> {/* not setup yet */}
           <img className="bi bi-person-circle icon-default" src={profileIcon} /> 
           <img className="bi bi-person-fill icon-hover-state" src={profileFillIcon} />
         </NavLink>
