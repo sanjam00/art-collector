@@ -11,8 +11,7 @@ import plusCircleFillIcon from "../../styles/icons/plus-circle-fill.svg"
 export default function NavBar() {
 
   return (
-    <div className="navbar-expand{-lg}">
-      <nav className="navbar">
+    <nav className="navbar">
 
       <div className="nav-icons">
           {/* needs to trigger a pop up that will take user to appropriate adding page */}
@@ -32,7 +31,6 @@ export default function NavBar() {
         </NavLink>
       </div>
 
-      </nav>
-    </div>
+    </nav>
   )
 }

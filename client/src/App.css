@@ -1,0 +1,10 @@
+
+.app-content {
+  padding-bottom: 2.5rem;
+}
+
+@media (min-width: 768px) {
+  .app-content {
+  padding-left: 2.5rem;
+  }
+}

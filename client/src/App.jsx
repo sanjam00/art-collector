@@ -7,11 +7,13 @@ import LoginPage from "./pages/LoginPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import SignupPage from "./pages/SignupPage";
 import HomeFeed from "./pages/HomeFeed";
+import "./App.css"
 
 export default function App() {
   const { token } = useAuth();
 
   return (
+    <div className="app-content">
     <ErrorBoundary>
       <BrowserRouter>
         {token ? <NavBar /> : null}
@@ -31,5 +33,6 @@ export default function App() {
         </Routes>
       </BrowserRouter>
     </ErrorBoundary>
+    </div>
   )
 }
