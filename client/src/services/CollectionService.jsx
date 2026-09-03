@@ -6,7 +6,7 @@ import { apiFetch } from "../api/api";
 
 // no params bc no sort/filter for the MVP
 export function getCollectionFeed(token) {
-  return apiFetch(`/`, token, {methods: 'GET' });
+  return apiFetch(`/home`, token, {methods: 'GET' });
 }
 
 // UserCollectionIndex
