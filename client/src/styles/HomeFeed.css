@@ -1,0 +1,56 @@
+
+.collection-grid {
+  column-count: 1;
+  column-gap: 1rem;
+  margin: 1em 2em; /* change bottom margin when adding navbar? */
+}
+
+.collection-item {
+  break-inside: avoid;
+  /* stops a card splitting across columns */
+  margin-bottom: 1rem;
+  display: inline-block;
+  /* required for break-inside to behave in some browsers */
+  width: 100%;
+}
+
+.collection-item .card {
+  border: none;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  box-shadow: 0 1px 3px var(--box-shadow);
+  transition: box-shadow 0.15s ease;
+}
+
+.collection-item .card:hover {
+  box-shadow: 0 4px 14px var(--hover-box-shadow);
+}
+
+.collection-item .card-img-top {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+  max-height: 400px;
+}
+
+.collection-item .card-body {
+  padding: 0.4rem 0.75rem;
+}
+
+@media (min-width: 576px) {
+  .collection-grid {
+    column-count: 2;
+  }
+}
+
+@media (min-width: 768px) {
+  .collection-grid {
+    column-count: 3;
+  }
+}
+
+@media (min-width: 1200px) {
+  .collection-grid {
+    column-count: 4;
+  }
+}

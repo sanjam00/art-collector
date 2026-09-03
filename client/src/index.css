@@ -3,8 +3,11 @@
   --lilac: #9b92a0; /* backgrounds */
   --golden-accent: #c7a005; /* buttons and icons */
   --dark-accent: #9f8004; /* selected buttons and icons */
+  --border-color: rgba(218, 218, 218, 0.5);
+  --box-shadow: rgba(179, 180, 183, 0.08);
+  --hover-box-shadow: rgba(100, 100, 102, 0.082);
   --custom-font-title: 'Vaelia', "Times New Roman", sans-serif;
-  --custom-font-body: 'Nalte Sans', Trebuchet, sans-serif
+  --custom-font-body: 'Nalte Sans', Trebuchet, sans-serif;
 }
 
 /* font for the site title only */
