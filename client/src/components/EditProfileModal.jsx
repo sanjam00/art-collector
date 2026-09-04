@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { editProfile } from "../services/UserService";
 import BottomSheet from "./BottomSheet";
+import "../styles/BottomSheet.css";
 
 import xSquareIcon from "../styles/icons/x-square.svg"
 import xSquareFillIcon from "../styles/icons/x-square-fill.svg"
@@ -37,7 +38,7 @@ export default function EditProfileModal({ user, onClose, onSaved }) {
 
   // add bootstrap classes
   return (
-    <BottomSheet isOpen={true} onClose={onClose} title="Edit Profile">
+    <BottomSheet isOpen={true} onClose={onClose} title="Edit Profile" showCloseButton={false} size="large">
       {error && <p className="error-message">{error}</p>}
 
       <form onSubmit={handleSubmit} className="edit-profile-form">
