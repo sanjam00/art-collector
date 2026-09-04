@@ -1,4 +1,7 @@
 
+import "../styles/HomeFeed.css"
+import "../styles/CollectionGrid.css"
+
 export default function CollectionGrid({
   collections, loading, page, totalPages, onPageChange, onCollectionClick
 }) {
@@ -8,7 +11,6 @@ export default function CollectionGrid({
     return <p>No collections found. Create your first one!</p>;
   }
 
-  // add bootstrap classes
   return (
     <div className="collection-grid-wrapper">
       <div className="collection-grid">

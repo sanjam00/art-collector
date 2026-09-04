@@ -1,0 +1,11 @@
+.profile-photo {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.profile-username {
+  font-size: 1.25rem;
+}

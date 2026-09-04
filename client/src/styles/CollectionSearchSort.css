@@ -1,0 +1,23 @@
+.sort-trigger {
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.sort-trigger img {
+  width: 20px;
+  height: 20px;
+}
+
+.search-input.form-control {
+  flex: 1;
+  border-radius: 999px;
+  border-color: var(--border-color);
+}
+
+.search-input.form-control:focus {
+  border-color: var(--golden-accent);
+  box-shadow: 0 0 0 0.2rem rgba(199, 160, 5, 0.15);
+}

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { getMyCollections } from "../services/CollectionService";
 import { useNavigate } from "react-router";
+import "../styles/MyCollectionsPage.css"
 
 import ProfileHeader from "../components/ProfileHeader";
 import CollectionSearchSort from "../components/CollectionSearchSort";
@@ -53,17 +54,20 @@ export default function MyCollectionsPage() {
 
   // add bootstrap classes
   return (
-    <div>
+    <div className="my-collections-page">
       <ProfileHeader user={user} onEditClick={() => setShowEditProfile(true)} />
+
+      <div className="divider-bar" />
+
+      { error && <p className="error-message">{error}</p> }
 
       <CollectionSearchSort
         search={search}
         sort={sort}
         onSearchChange={handleSearchChange}
         onSortChange={handleSortChange}
-      />
+        />
 
-      { error && <p className="error-message">{error}</p> }
 
       <CollectionGrid
         collections={collections}
@@ -72,7 +76,7 @@ export default function MyCollectionsPage() {
         totalPages={totalPages}
         onPageChange={setPage}
         onCollectionClick={handleCollectionClick}
-      />
+        />
 
       {
         showEditProfile && (
