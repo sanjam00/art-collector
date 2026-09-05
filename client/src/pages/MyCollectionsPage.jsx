@@ -19,7 +19,7 @@ export default function MyCollectionsPage() {
   const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-  const [showEditProfile, setShowEditProfile] = useState(false); // can add this depending on desired flow
+  const [showEditProfile, setShowEditProfile] = useState(false);
 
   const { user, setUser, token } = useAuth();
   const navigate = useNavigate();
