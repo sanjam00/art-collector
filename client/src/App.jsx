@@ -10,6 +10,7 @@ import NotFoundPage from "./pages/NotFoundPage";
 import SignupPage from "./pages/SignupPage";
 import HomeFeed from "./pages/HomeFeed";
 import MyCollectionsPage from "./pages/MyCollectionsPage";
+import CollectionPage from "./pages/CollectionPage";
 
 export default function App() {
   const { token } = useAuth();
@@ -20,7 +21,6 @@ export default function App() {
       <BrowserRouter>
         {token ? <NavBar /> : null}
         <Routes>
-          < Route path="/*" element= { < NotFoundPage /> } />
           < Route path="/login" element={ <LoginPage /> } />
           < Route path="/signup" element={ <SignupPage />} />
           < Route
@@ -40,6 +40,15 @@ export default function App() {
               </ProtectedRoute>
             }
           />
+          < Route
+            path="/collections/:collection_id"
+            element={
+              <ProtectedRoute>
+                <CollectionPage />
+              </ProtectedRoute>
+            }
+          />
+          < Route path="/*" element= { < NotFoundPage /> } />
         </Routes>
       </BrowserRouter>
     </ErrorBoundary>
