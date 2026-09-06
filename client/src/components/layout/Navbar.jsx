@@ -13,8 +13,7 @@ export default function NavBar() {
     <nav className="navbar">
 
       <div className="nav-icons">
-          {/* needs to trigger a pop up that will take user to appropriate adding page */}
-          < AddMenu />          
+        < AddMenu />          
 
         <NavLink to='/home' className="icon-hover">
           <img className="bi bi-house-door icon-default" src={homeIcon} />

@@ -2,6 +2,8 @@
 import "../styles/HomeFeed.css"
 import "../styles/CollectionGrid.css"
 
+import coverArtPlaceholder from "../styles/icons/cover-art-placeholder.svg"
+
 export default function CollectionGrid({
   collections, loading, page, totalPages, onPageChange, onCollectionClick
 }) {
@@ -23,8 +25,8 @@ export default function CollectionGrid({
             <div className="card">
               <img
                 className="card-img-top"
-                src={c.collection_img}
-                alt={`${c.title} cover`}
+                src={c.collection_img || coverArtPlaceholder}
+                alt={`${c.title}`}
               />
               <p className="card-body">{c.title}</p>
             </div>

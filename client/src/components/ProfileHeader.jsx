@@ -17,7 +17,7 @@ export default function ProfileHeader({ user, onEditClick }) {
       <h2 className="profile-username flex-grow-1 mb-0">{user.username}</h2>
       <button className="icon-hover" type="button" onClick={onEditClick}>
         <img className="icon-default" src={pencilIcon} alt="Edit profile" />
-        <img className="icon-hover-state" src={pencilFillIcon} alt="" />
+        <img className="icon-hover-state" src={pencilFillIcon} alt="Edit profile" />
       </button>
     </div>
   );

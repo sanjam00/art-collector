@@ -1,0 +1,15 @@
+
+.review-type-badge {
+  font-size: 0.75rem;
+  padding: 2px 8px;
+  border-radius: 12px;
+  display: inline-block;
+}
+
+.review-type-badge.artwork {
+  background: #e0d4f7;
+}
+
+.review-type-badge.artist {
+  background: #d4ecf7;
+}
