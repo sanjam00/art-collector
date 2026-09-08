@@ -73,4 +73,9 @@
   align-items: center;
   color: #666;
   font-size: 1rem;
+  margin: .5rem 0;
+}
+
+.collection-owner {
+  margin: 0;
 }
