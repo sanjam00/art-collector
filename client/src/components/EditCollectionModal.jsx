@@ -3,9 +3,9 @@ import { useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { editCollection, deleteCollection } from "../services/CollectionService";
 import BottomSheet from "./BottomSheet";
+import { useNavigate } from "react-router";
 
 export default function EditCollectionModal({ collection, onClose, onSaved, onDeleted }) {
-  const { token } = useAuth();
   const [title, setTitle] = useState(collection.title);
   const [description, setDescription] = useState(collection.description || '');
   const [collectionImg, setCollectionImg] = useState(collection.collection_img || '');
@@ -13,6 +13,9 @@ export default function EditCollectionModal({ collection, onClose, onSaved, onDe
   const [error, setError] = useState('');
   const [saving, setSaving] = useState(false);
   const [deleting, setDeleting] = useState(false);
+  
+  const { token } = useAuth();
+  const navigate = useNavigate();
 
   async function handleSubmit(e) {
     e.preventDefault();

@@ -56,12 +56,18 @@ export default function CollectionPage(){
       </div>
 
       <div className="collection-header">
-        {/* need to render the first image from a review if available */}
-        <img src={collectionData.collection_img || coverArtPlaceholder} alt={`${collectionData.title} cover`}/>
+        <div className="collection-header-top">
+          {/* need to render the first image from a review if available */}
+          <img 
+            className="collection-header-img" 
+            src={collectionData.collection_img || coverArtPlaceholder} 
+            alt={`${collectionData.title} cover`}
+          />
 
-        <div className="collection-header-text">
-          <h1 className="collection-title">{collectionData.title}</h1>
-          <p className="collection-description">{collectionData.description}</p>
+          <div className="collection-header-text">
+            <h1 className="collection-title">{collectionData.title}</h1>
+            <p className="collection-description">{collectionData.description}</p>
+          </div>
         </div>
         
         <div className="collection-meta">
@@ -94,7 +100,7 @@ export default function CollectionPage(){
             setCollectionData(updated);
             setShowEditModal(false);
           }}
-          onDeleted={() => navigate('/collections')}
+          onDeleted={() => navigate('/my-collections')}
         />
       )}      
     </div>
