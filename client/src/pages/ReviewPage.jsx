@@ -8,6 +8,7 @@ import { getArtistReviewById, editArtistReviewById, deleteArtistReviewById } fro
 import EditArtistReviewModal from "../components/EditArtistReviewModal";
 import EditArtworkReviewModal from "../components/EditArtworkReviewModal";
 
+import coverArtPlaceholder from "../styles/icons/cover-art-placeholder.svg"
 import backIcon from "../styles/icons/arrow-left-circle.svg"
 import backFillIcon from "../styles/icons/arrow-left-circle-fill.svg"
 import pencilIcon from "../styles/icons/pencil.svg"
@@ -85,7 +86,11 @@ export default function ReviewPage() {
         </div>
       </div>
 
-      <img className="review-image" src={review.item_img} alt={`${heading} image`} />
+      <img 
+        className="review-image" 
+        src={review.item_img || coverArtPlaceholder} 
+        alt={`${heading} cover`} 
+      />
 
       <h1>{heading}</h1>
       {reviewType === "artwork" && review.artist && <p className="review-artist">{review.artist}</p>}

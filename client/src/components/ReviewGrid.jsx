@@ -2,6 +2,8 @@
 
 import { useNavigate } from "react-router";
 
+import coverArtPlaceholder from "../styles/icons/cover-art-placeholder.svg"
+
 export default function ReviewGrid({ artworkReviews = [], artistReviews = [] }) {
   const navigate = useNavigate();
 
@@ -28,7 +30,7 @@ export default function ReviewGrid({ artworkReviews = [], artistReviews = [] }) 
           <div className="card" onClick={() => handleReviewClick(review)}>
             <img
               className="card-img-top"
-              src={review.item_img}
+              src={review.item_img || coverArtPlaceholder}
               alt={`${review.reviewType === 'artwork' ? review.title : review.name} image`}
             />
             <div className="card-body">
