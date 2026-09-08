@@ -6,12 +6,12 @@ import { apiFetch } from "../api/api";
 // ArtistReviewIndex
 
 // needs params due to sort/filter
-export function getArtistReview (params = {}) {
+export function getArtistReview (params = {}, token) {
   const query = new URLSearchParams(params).toString();
-  return apiFetch(`/artist-reviews?${query}`);
+  return apiFetch(`/artist-reviews?${query}`, token);
 }
 
-export function createArtistReview( token, name, description, item_img, reason_for_liking, location_viewed ) {
+export function createArtistReview( token, {name, description, item_img, reason_for_liking, location_viewed} ) {
   return apiFetch(`/artist-reviews`, token, {
     method: 'POST',
     body: JSON.stringify({ 
@@ -21,8 +21,8 @@ export function createArtistReview( token, name, description, item_img, reason_f
 }
 
 // ArtistReviewById
-export function getArtistReviewById ( id ) {
-  return apiFetch(`/artist-reviews/${id}`)
+export function getArtistReviewById( id, token ) {
+  return apiFetch(`/artist-reviews/${id}`, token)
 }
 
 export function editArtistReviewById(id, token, updates ) {

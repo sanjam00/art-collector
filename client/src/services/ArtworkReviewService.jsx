@@ -6,9 +6,9 @@ import { apiFetch } from "../api/api";
 // ArtworkReviewIndex
 
 // needs params due to sort/filter
-export function getArtworkReview (params = {}) {
+export function getArtworkReview (params = {}, token) {
   const query = new URLSearchParams(params).toString();
-  return apiFetch(`/artwork-reviews?${query}`);
+  return apiFetch(`/artwork-reviews?${query}`, token);
 }
 
 export function createArtworkReview( token, {title, artist, date_completed, description, item_img, reason_for_liking, location_viewed} ) {
@@ -21,8 +21,8 @@ export function createArtworkReview( token, {title, artist, date_completed, desc
 }
 
 // ArtworkReviewById
-export function getArtworkReviewById ( id ) {
-  return apiFetch(`/artwork-reviews/${id}`)
+export function getArtworkReviewById ( id, token ) {
+  return apiFetch(`/artwork-reviews/${id}`, token)
 }
 
 export function editArtworkReviewById( id, token, updates ) {

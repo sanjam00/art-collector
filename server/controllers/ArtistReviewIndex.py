@@ -48,8 +48,9 @@ class ArtistReviewIndex(Resource):
     user_id = int(get_jwt_identity())
     request_json = request.get_json()
 
-    if not request_json.get('name', '').strip():
-      return {'errors': ['Name is required']}, 422
+    title = request_json.get('title')
+    if not isinstance(title, str) or not title.strip():
+      return {'errors': ['Title is required and must be text']}, 422
 
     review = ArtistReview(
       user_id = user_id,

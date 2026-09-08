@@ -10,11 +10,16 @@ import backIcon from "../styles/icons/arrow-left-circle.svg"
 import backFillIcon from "../styles/icons/arrow-left-circle-fill.svg"
 import pencilIcon from "../styles/icons/pencil.svg"
 import pencilFillIcon from "../styles/icons/pencil-fill.svg"
+import bookmarkIcon from "../styles/icons/bookmark-plus.svg"
+import bookmarkFillIcon from "../styles/icons/bookmark-plus-fill.svg"
+import AddToCollectionModal from "../components/AddToCollectionModal";
 
 export default function ReviewPage() {
   const [review, setReview] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [showAddToCollection, setShowAddToCollection] = useState(false);
+  const [addedMsg, setAddedMsg] = useState('');
   
   const { id } = useParams();
   const location = useLocation();
@@ -60,15 +65,20 @@ export default function ReviewPage() {
     <div className="review-page">
       <div className="review-page-topbar">
         <button className="icon-button" onClick={() => navigate(-1)}>
+          {/* add both icons */}
           <img src={backIcon} alt="Back" />
         </button>
         <div className="d-flex gap-2">
+          <button className="icon-button" onClick={() => setShowAddToCollection(true)}>
+            <img src={bookmarkIcon} alt="Add to collection" />
+          </button>
           <button className="icon-button" onClick={() => {/* open edit modal */ }}>
+            {/* add both icons */}
             <img src={pencilIcon} alt="Edit" />
           </button>
-          <button className="icon-button" onClick={handleDelete}>
+          {/* <button className="icon-button" onClick={handleDelete}>
             <img src={trashIcon} alt="Delete" />
-          </button>
+          </button> */}
         </div>
       </div>
 
@@ -81,6 +91,21 @@ export default function ReviewPage() {
       <p className="review-description">{review.description}</p>
       <p className="review-reason"><strong>Why I liked it:</strong> {review.reason_for_liking}</p>
       <p className="review-location"><strong>Where I saw it:</strong> {review.location_viewed}</p>
+
+      {addedMsg && <p className="success-message">{addedMsg}</p>}
+
+      {showAddToCollection && (
+        <AddToCollectionModal
+          reviewId={id}
+          reviewType={reviewType}
+          onClose={() => setShowAddToCollection(false)}
+          onAdded={() => {
+            setAddedMsg("Added to collection!");
+            setShowAddToCollection(false);
+            setTimeout(() => setAddedMsg(''), 3000);
+          }}
+        />
+      )}
     </div>
   );
 }
