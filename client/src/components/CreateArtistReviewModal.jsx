@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { createArtistReview } from "../services/ArtistReviewService";
 import BottomSheet from "./BottomSheet";
+import { useNavigate } from "react-router";
 
 export default function CreateArtistReviewModal({ onClose, onCreated }) {
   const [name, setName] = useState('');
@@ -13,6 +14,7 @@ export default function CreateArtistReviewModal({ onClose, onCreated }) {
   const [saving, setSaving] = useState(false);
   
   const { token } = useAuth();
+  const navigate = useNavigate();
   
   async function handleSubmit(e) {
     e.preventDefault();
@@ -25,7 +27,7 @@ export default function CreateArtistReviewModal({ onClose, onCreated }) {
 
     setSaving(true);
     try {
-      await createArtistReview(token, {
+      const newReview = await createArtistReview(token, {
         name,
         description,
         item_img: itemImg,
@@ -33,6 +35,8 @@ export default function CreateArtistReviewModal({ onClose, onCreated }) {
         location_viewed: locationViewed,
       });
       onCreated();
+      console.log(newReview);
+      navigate(`/artist-reviews/${newReview.id}`)
     } catch (err) {
       setError(err.message);
     } finally {

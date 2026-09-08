@@ -1,12 +1,13 @@
 import { useState } from "react"
 import ListGroup from "react-bootstrap/ListGroup";
 
-import plusCircleIcon from "../styles/icons/plus-circle.svg"
-import plusCircleFillIcon from "../styles/icons/plus-circle-fill.svg"
 import BottomSheet from "./BottomSheet";
 import CreateArtworkReviewModal from "./CreateArtworkReviewModal";
 import CreateArtistReviewModal from "./CreateArtistReviewModal";
-import CreateCollectionModal from "./CreateCollectionReviewModal";
+import CreateCollectionModal from "./CreateCollectionModal";
+
+import plusCircleIcon from "../styles/icons/plus-circle.svg"
+import plusCircleFillIcon from "../styles/icons/plus-circle-fill.svg"
 
 export default function AddMenu(){
   const [activeView, setActiveView] = useState();

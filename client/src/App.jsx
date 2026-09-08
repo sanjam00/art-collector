@@ -11,6 +11,7 @@ import SignupPage from "./pages/SignupPage";
 import HomeFeed from "./pages/HomeFeed";
 import MyCollectionsPage from "./pages/MyCollectionsPage";
 import CollectionPage from "./pages/CollectionPage";
+import ReviewPage from "./pages/ReviewPage";
 
 export default function App() {
   const { token } = useAuth();
@@ -45,6 +46,22 @@ export default function App() {
             element={
               <ProtectedRoute>
                 <CollectionPage />
+              </ProtectedRoute>
+            }
+          />
+          < Route
+            path="/artwork-reviews/:id"
+            element={
+              <ProtectedRoute>
+                <ReviewPage />
+              </ProtectedRoute>
+            }
+          />
+          < Route
+            path="/artist-reviews/:id"
+            element={
+              <ProtectedRoute>
+                <ReviewPage />
               </ProtectedRoute>
             }
           />

@@ -15,7 +15,6 @@ export default function EditCollectionModal({ collection, onClose, onSaved, onDe
   const [deleting, setDeleting] = useState(false);
   
   const { token } = useAuth();
-  const navigate = useNavigate();
 
   async function handleSubmit(e) {
     e.preventDefault();

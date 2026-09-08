@@ -1,3 +1,4 @@
+// combine artwork reviews and artist reviews into one grid, meshed together instead of separate
 
 export default function ReviewGrid({ artworkReviews = [], artistReviews = [] }) {
   const combined = [
