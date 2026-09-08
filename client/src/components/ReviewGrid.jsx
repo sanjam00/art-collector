@@ -2,6 +2,7 @@
 
 import { useNavigate } from "react-router";
 
+import "../styles/ReviewGrid.css"
 import coverArtPlaceholder from "../styles/icons/cover-art-placeholder.svg"
 
 export default function ReviewGrid({ artworkReviews = [], artistReviews = [] }) {

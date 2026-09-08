@@ -1,3 +1,58 @@
+.review-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 1rem;
+  margin: 1em 2em;
+}
+
+.collection-item,
+.review-item {
+  width: 100%;
+  /* break-inside and inline-block are no longer needed — remove them */
+}
+
+.review-item {
+  break-inside: avoid;
+  margin-bottom: 1rem;
+  display: inline-block;
+  width: 100%;
+}
+
+.review-item .card {
+  border: none;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  box-shadow: 0 1px 3px var(--box-shadow);
+  transition: box-shadow 0.15s ease;
+}
+
+.review-item .card:hover {
+  box-shadow: 0 4px 14px var(--hover-box-shadow);
+}
+
+.review-item .card-img-top {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+  max-height: 400px;
+}
+
+.review-item .card-body {
+  padding: 0.4rem 0.75rem;
+}
+
+.review-title {
+  margin: 0 0 0.2rem;
+  font-weight: 600;
+  overflow-wrap: break-word;
+}
+
+.review-subtitle {
+  margin: 0 0 0.4rem;
+  font-size: 0.85rem;
+  color: #666;
+  overflow-wrap: break-word;
+}
 
 .review-type-badge {
   font-size: 0.75rem;
@@ -12,4 +67,16 @@
 
 .review-type-badge.artist {
   background: #d4ecf7;
+}
+
+@media (min-width: 768px) {
+  .review-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+}
+
+@media (min-width: 1200px) {
+  .review-grid {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  }
 }
