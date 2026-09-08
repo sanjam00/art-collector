@@ -58,14 +58,12 @@ export default function EditProfileModal({ user, onClose, onSaved }) {
         </div>
 
         <div className="modal-actions d-flex justify-content-end gap-2">
-          <button className="icon-hover" type="button" onClick={onClose}>
-            <img className="icon-default" src={xSquareIcon} alt="Cancel" />
-            <img className="icon-hover-state" src={xSquareFillIcon} alt="" />
-          </button>
-          <button className="icon-hover" type="submit" disabled={saving}>
-            <img className="icon-default" src={save2Icon} alt="Save" />
-            <img className="icon-hover-state" src={save2FillIcon} alt="" />
-          </button>
+          <div className="d-flex gap-2">
+            <button type="button" className="btn btn-outline-secondary" onClick={onClose}>Cancel</button>
+            <button type="submit" className="btn btn-primary" disabled={saving}>
+              {saving ? "Saving..." : "Save"}
+            </button>
+          </div>
         </div>
       </form>
     </BottomSheet>
