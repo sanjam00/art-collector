@@ -1,6 +1,10 @@
 // combine artwork reviews and artist reviews into one grid, meshed together instead of separate
 
+import { useNavigate } from "react-router";
+
 export default function ReviewGrid({ artworkReviews = [], artistReviews = [] }) {
+  const navigate = useNavigate();
+
   const combined = [
     ...artworkReviews.map((r) => ({ ...r, reviewType: 'artwork' })),
     ...artistReviews.map((r) => ({ ...r, reviewType: 'artist' })),
@@ -10,11 +14,18 @@ export default function ReviewGrid({ artworkReviews = [], artistReviews = [] }) 
     return <p>No reviews in this collection yet.</p>;
   }
 
+  function handleReviewClick(review){
+    const path = review.reviewType == 'artwork'
+      ? `/artwork-reviews/${review.id}`
+      : `/artist-reviews/${review.id}`;
+    navigate(path)
+  }
+
   return (
     <div className="review-grid">
       {combined.map((review) => (
         <div key={`${review.reviewType}-${review.id}`} className="review-item">
-          <div className="card">
+          <div className="card" onClick={() => handleReviewClick(review)}>
             <img
               className="card-img-top"
               src={review.item_img}

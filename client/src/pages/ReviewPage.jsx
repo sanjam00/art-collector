@@ -5,6 +5,8 @@ import { useAuth } from "../context/AuthContext";
 import { useLocation, useParams, useNavigate } from "react-router";
 import { getArtworkReviewById, editArtworkReviewById, deleteArtworkReviewById } from "../services/ArtworkReviewService";
 import { getArtistReviewById, editArtistReviewById, deleteArtistReviewById } from "../services/ArtistReviewService";
+import EditArtistReviewModal from "../components/EditArtistReviewModal";
+import EditArtworkReviewModal from "../components/EditArtworkReviewModal";
 
 import backIcon from "../styles/icons/arrow-left-circle.svg"
 import backFillIcon from "../styles/icons/arrow-left-circle-fill.svg"
@@ -20,6 +22,7 @@ export default function ReviewPage() {
   const [error, setError] = useState('');
   const [showAddToCollection, setShowAddToCollection] = useState(false);
   const [addedMsg, setAddedMsg] = useState('');
+  const [showEditModal, setShowEditModal] = useState(false);
   
   const { id } = useParams();
   const location = useLocation();
@@ -72,7 +75,7 @@ export default function ReviewPage() {
           <button className="icon-button" onClick={() => setShowAddToCollection(true)}>
             <img src={bookmarkIcon} alt="Add to collection" />
           </button>
-          <button className="icon-button" onClick={() => {/* open edit modal */ }}>
+          <button className="icon-button" onClick={() => setShowEditModal(true)}>
             {/* add both icons */}
             <img src={pencilIcon} alt="Edit" />
           </button>
@@ -103,6 +106,28 @@ export default function ReviewPage() {
             setAddedMsg("Added to collection!");
             setShowAddToCollection(false);
             setTimeout(() => setAddedMsg(''), 3000);
+          }}
+        />
+      )}
+
+      {showEditModal && reviewType === "artwork" && (
+        <EditArtworkReviewModal
+          review={review}
+          onClose={() => setShowEditModal(false)}
+          onSaved={(updated) => {
+            setReview(updated);
+            setShowEditModal(false);
+          }}
+        />
+      )}
+
+      {showEditModal && reviewType === "artist" && (
+        <EditArtistReviewModal
+          review={review}
+          onClose={() => setShowEditModal(false)}
+          onSaved={(updated) => {
+            setReview(updated);
+            setShowEditModal(false);
           }}
         />
       )}
