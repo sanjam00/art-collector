@@ -38,6 +38,18 @@ export default function CollectionPage(){
     .finally(() => setLoading(false))
   }, [collection_id, token])
 
+  function handleReviewRemoved(reviewId, reviewType) {
+    setCollectionData((prev) => ({
+      ...prev,
+      artwork_reviews: reviewType === "artwork"
+        ? prev.artwork_reviews.filter((r) => r.id !== reviewId)
+        : prev.artwork_reviews,
+      artist_reviews: reviewType === "artist"
+        ? prev.artist_reviews.filter((r) => r.id !== reviewId)
+        : prev.artist_reviews,
+    }));
+  }
+
   if (loading) return <p>Loading collection...</p>;
   if (error) return <p className="error-message">{error}</p>;
   if (!collectionData) return null;
@@ -90,6 +102,8 @@ export default function CollectionPage(){
       <ReviewGrid
         artworkReviews={collectionData.artwork_reviews}
         artistReviews={collectionData.artist_reviews}
+        collectionId={collection_id}
+        onRemoved={handleReviewRemoved}
       />
 
       {showEditModal && (

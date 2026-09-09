@@ -19,11 +19,20 @@
 }
 
 .review-item .card {
+  position: relative;
   border: none;
   border-radius: 0.75rem;
   overflow: hidden;
   box-shadow: 0 1px 3px var(--box-shadow);
   transition: box-shadow 0.15s ease;
+}
+
+.remove-review-btn {
+  position: absolute;
+  top: 0.4rem;
+  right: 0.4rem;
+  z-index: 2;
+  padding: 0.25rem;
 }
 
 .review-item .card:hover {
