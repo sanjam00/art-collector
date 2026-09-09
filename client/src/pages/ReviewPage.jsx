@@ -17,7 +17,11 @@ import pencilIcon from "../styles/icons/pencil.svg"
 import pencilFillIcon from "../styles/icons/pencil-fill.svg"
 import bookmarkIcon from "../styles/icons/bookmark-plus.svg"
 import bookmarkFillIcon from "../styles/icons/bookmark-plus-fill.svg"
+import bookmarkDashIcon from "../styles/icons/bookmark-dash.svg"
+import bookmarkDashFillIcon from "../styles/icons/bookmark-dash-fill.svg"
 import locationIcon from "../styles/icons/geo-alt.svg"
+import trashIcon from "../styles/icons/trash3.svg"
+import trashFillIcon from "../styles/icons/trash3-fill.svg"
 
 export default function ReviewPage() {
   const [review, setReview] = useState(null);
@@ -83,9 +87,10 @@ export default function ReviewPage() {
             <img className="icon-default" src={pencilIcon} alt="Edit" />
             <img className="icon-hover-state" src={pencilFillIcon} alt="Edit" />
           </button>
-          {/* <button className="icon-button" onClick={handleDelete}>
-            <img src={trashIcon} alt="Delete" />
-          </button> */}
+          <button className="icon-hover" onClick={handleDelete}>
+            <img className="icon-default" src={trashIcon} alt="Delete" />
+            <img className="icon-hover-state" src={trashFillIcon} alt="Delete" />
+          </button>
         </div>
       </div>
 
