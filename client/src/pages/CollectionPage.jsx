@@ -3,9 +3,9 @@ import { useAuth } from "../context/AuthContext";
 import { getCollectionById } from "../services/CollectionService";
 import { useNavigate, useParams } from "react-router";
 
-import "../styles/CollectionPage.css"
 import ReviewGrid from "../components/ReviewGrid";
 import EditCollectionModal from "../components/EditCollectionModal";
+import "../styles/CollectionPage.css"
 
 import coverArtPlaceholder from "../styles/icons/cover-art-placeholder.svg"
 import lockIcon from "../styles/icons/lock.svg"
@@ -22,7 +22,7 @@ export default function CollectionPage(){
   const [showEditModal, setShowEditModal] = useState(false);
 
   const { collection_id } = useParams(); // grabs id from /collections/collecion_id
-  const {token} = useAuth();
+  const { user, token } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -54,17 +54,21 @@ export default function CollectionPage(){
   if (error) return <p className="error-message">{error}</p>;
   if (!collectionData) return null;
 
+  const isOwner = user?.id === collectionData.user_id;
+
   return (
     <div className="collection-page">
       <div className="collection-page-topbar">
         <button className="icon-hover" type="button" onClick={() => navigate(-1)}>
-          <img className="bi bi-arrow-left-circle icon-default" src={backIcon} alt="Back" />
-          <img className="bi bi-arrow-left-circle icon-hover-state" src={backFillIcon} alt="Back" />
+          <img className="icon-default" src={backIcon} alt="Back" />
+          <img className="icon-hover-state" src={backFillIcon} alt="Back" />
         </button>
-        <button className="icon-hover" type="button" onClick={() => setShowEditModal(true)}>
-          <img className="icon-default" src={pencilIcon} alt="Edit collection" />
-          <img className="icon-hover-state" src={pencilFillIcon} alt="Edit collection" />
-        </button>
+        { isOwner && (
+          <button className="icon-hover" type="button" onClick={() => setShowEditModal(true)}>
+            <img className="icon-default" src={pencilIcon} alt="Edit collection" />
+            <img className="icon-hover-state" src={pencilFillIcon} alt="Edit collection" />
+          </button>
+        )}
       </div>
 
       <div className="collection-header">
@@ -103,10 +107,10 @@ export default function CollectionPage(){
         artworkReviews={collectionData.artwork_reviews}
         artistReviews={collectionData.artist_reviews}
         collectionId={collection_id}
-        onRemoved={handleReviewRemoved}
+        onRemoved={isOwner ? handleReviewRemoved : undefined}
       />
 
-      {showEditModal && (
+      {isOwner && showEditModal && (
         <EditCollectionModal
           collection={collectionData}
           onClose={() => setShowEditModal(false)}

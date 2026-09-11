@@ -31,7 +31,7 @@ export default function ReviewPage() {
   
   const { id } = useParams();
   const location = useLocation();
-  const { token } = useAuth();
+  const { user, token } = useAuth();
   const navigate = useNavigate();
   
   const reviewType = location.pathname.startsWith("/artwork-reviews") ? "artwork" : "artist";
@@ -66,6 +66,8 @@ export default function ReviewPage() {
   if (error) return <p className="error-message">{error}</p>;
   if (!review) return null;
 
+  const isOwner = user?.id === review.user_id;
+
   // the one real difference: artwork has title/artist, artist review has just name
   const heading = reviewType === "artwork" ? review.title : review.name;
 
@@ -76,20 +78,22 @@ export default function ReviewPage() {
           <img className="icon-default" src={backIcon} alt="Back" />
           <img className="icon-hover-state" src={backFillIcon} alt="Back" />
         </button>
-        <div className="d-flex gap-4">
-          <button className="icon-hover" type="button" onClick={() => setShowAddToCollection(true)}>
-            <img className="icon-default" src={bookmarkIcon} alt="Add to collection" />
-            <img className="icon-hover-state" src={bookmarkFillIcon} alt="Add to collection" />
-          </button>
-          <button className="icon-hover" type="button" onClick={() => setShowEditModal(true)}>
-            <img className="icon-default" src={pencilIcon} alt="Edit" />
-            <img className="icon-hover-state" src={pencilFillIcon} alt="Edit" />
-          </button>
-          <button className="icon-hover" onClick={handleDelete}>
-            <img className="icon-default" src={trashIcon} alt="Delete" />
-            <img className="icon-hover-state" src={trashFillIcon} alt="Delete" />
-          </button>
-        </div>
+        {isOwner && (    
+          <div className="d-flex gap-4">
+            <button className="icon-hover" type="button" onClick={() => setShowAddToCollection(true)}>
+              <img className="icon-default" src={bookmarkIcon} alt="Add to collection" />
+              <img className="icon-hover-state" src={bookmarkFillIcon} alt="Add to collection" />
+            </button>
+            <button className="icon-hover" type="button" onClick={() => setShowEditModal(true)}>
+              <img className="icon-default" src={pencilIcon} alt="Edit" />
+              <img className="icon-hover-state" src={pencilFillIcon} alt="Edit" />
+            </button>
+            <button className="icon-hover" onClick={handleDelete}>
+              <img className="icon-default" src={trashIcon} alt="Delete" />
+              <img className="icon-hover-state" src={trashFillIcon} alt="Delete" />
+            </button>
+          </div>
+        )}
       </div>
 
       <div className="review-image-wrapper">
@@ -126,11 +130,10 @@ export default function ReviewPage() {
       {review.reason_for_liking && (
         <p className="review-reason"><strong>Why I liked it:</strong> {review.reason_for_liking}</p>
       )}
-      {/* <p className="review-location"><strong>Where I saw it:</strong> {review.location_viewed}</p> */}
 
       {addedMsg && <p className="success-message">{addedMsg}</p>}
 
-      {showAddToCollection && (
+      {isOwner && showAddToCollection && (
         <AddToCollectionModal
           reviewId={id}
           reviewType={reviewType}
@@ -143,7 +146,7 @@ export default function ReviewPage() {
         />
       )}
 
-      {showEditModal && reviewType === "artwork" && (
+      {isOwner && showEditModal && reviewType === "artwork" && (
         <EditArtworkReviewModal
           review={review}
           onClose={() => setShowEditModal(false)}
@@ -154,7 +157,7 @@ export default function ReviewPage() {
         />
       )}
 
-      {showEditModal && reviewType === "artist" && (
+      {isOwner && showEditModal && reviewType === "artist" && (
         <EditArtistReviewModal
           review={review}
           onClose={() => setShowEditModal(false)}
