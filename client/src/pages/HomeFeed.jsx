@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
 import { getCollectionFeed } from "../services/CollectionService";
 import { useNavigate } from "react-router";
-import "../styles/HomeFeed.css"
+import "../styles/CollectionGrid.css"
 
 export default function HomeFeed(){
   const [collections, setCollections] = useState([]);

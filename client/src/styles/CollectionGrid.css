@@ -8,7 +8,7 @@
 .collection-item {
   break-inside: avoid;
   margin-bottom: 1rem;
-  display: inline-block;
+  /* display: inline-block; */
   width: 100%;
 }
 
@@ -33,6 +33,12 @@
 
 .collection-item .card-body {
   padding: 0.4rem 0.75rem;
+}
+
+@media (min-width: 576px) {
+  .collection-grid {
+    column-count: 2;
+  }
 }
 
 @media (min-width: 768px) {

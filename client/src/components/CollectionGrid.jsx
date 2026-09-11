@@ -1,5 +1,4 @@
 
-import "../styles/HomeFeed.css"
 import "../styles/CollectionGrid.css"
 
 import coverArtPlaceholder from "../styles/icons/cover-art-placeholder.svg"
