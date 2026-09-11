@@ -46,7 +46,6 @@
 h1{
   color: var(--dark-gray);
   font-family: var(--custom-font-body);
-  /* font-weight: 100; */
 }
 
 body {
