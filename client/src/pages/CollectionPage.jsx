@@ -88,9 +88,9 @@ export default function CollectionPage(){
         
         <div className="collection-meta">
           <p className="collection-owner">Created by: {collectionData.username}</p>
-          {/* conditionally render a lock = private || globe = public */}
           <div className="collection-visibility" >
             <img 
+            // keeping bootstrap classes for conditional rendering
               className={collectionData.is_public ? "bi bi-globe2" : "bi bi-lock"} 
               src={collectionData.is_public ? globeIcon : lockIcon} 
               alt={collectionData.is_public ? "Public" : "Private"}

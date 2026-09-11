@@ -92,7 +92,6 @@ export default function MyCollectionsPage() {
     navigate(`/collections/${collection.id}`);
   }
 
-  // add bootstrap classes
   return (
     <div className="my-collections-page">
       <ProfileHeader user={user} onEditClick={() => setShowEditProfile(true)} />

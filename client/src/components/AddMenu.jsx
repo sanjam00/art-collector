@@ -19,8 +19,8 @@ export default function AddMenu(){
   return (
     <div className="add-menu">
       <button className="add-button icon-hover" type="button" onClick={() => setActiveView("choice")}>
-        <img className="bi bi-plus-circle icon-default" src={plusCircleIcon} />
-        <img className="bi bi-plus-circle icon-hover-state" src={plusCircleFillIcon} />
+        <img className="icon-default" src={plusCircleIcon} />
+        <img className="icon-hover-state" src={plusCircleFillIcon} />
       </button>
 
       <BottomSheet

@@ -16,13 +16,13 @@ export default function NavBar() {
         < AddMenu />          
 
         <NavLink to='/home' className="icon-hover">
-          <img className="bi bi-house-door icon-default" src={homeIcon} />
-          <img className="bi bi-house-door-fill icon-hover-state" src={homeFillIcon} />
+          <img className="icon-default" src={homeIcon} />
+          <img className="icon-hover-state" src={homeFillIcon} />
         </NavLink>
 
         <NavLink to='/my-collections' className="icon-hover"> {/* not setup yet */}
-          <img className="bi bi-person-circle icon-default" src={profileIcon} /> 
-          <img className="bi bi-person-fill icon-hover-state" src={profileFillIcon} />
+          <img className="icon-default" src={profileIcon} /> 
+          <img className="icon-hover-state" src={profileFillIcon} />
         </NavLink>
       </div>
 
