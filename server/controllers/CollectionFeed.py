@@ -11,7 +11,7 @@ class CollectionFeed(Resource):
   @jwt_required()
   def get(self):
     page = request.args.get('page', 1, type=int)
-    per_page = request.args.get('per_page', 10, type=int)
+    per_page = request.args.get('per_page', 50, type=int)
 
     pagination = Collection.query.filter(
       Collection.is_public == True

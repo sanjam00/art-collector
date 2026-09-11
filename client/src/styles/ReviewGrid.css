@@ -71,11 +71,11 @@
 }
 
 .review-type-badge.artwork {
-  background: #e0d4f7;
+  background: #dacae3;
 }
 
 .review-type-badge.artist {
-  background: #d4ecf7;
+  background: #f2d86f;
 }
 
 @media (min-width: 768px) {
