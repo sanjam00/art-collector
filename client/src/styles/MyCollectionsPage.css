@@ -4,3 +4,28 @@
   margin: 0 auto;
   padding: 1.5rem 1rem 4rem;
 }
+
+.my-collections-tabs .nav-link {
+  color: var(--dark-gray);
+  border: none;
+  border-bottom: 3px solid transparent;
+  border-radius: 0;
+  font-family: var(--custom-font-body);
+  padding: 0.5rem 1rem;
+}
+
+.my-collections-tabs .nav-link:hover {
+  border-bottom-color: var(--lilac);
+  color: var(--dark-gray);
+}
+
+.my-collections-tabs .nav-link.active {
+  color: var(--dark-gray);
+  background: none;
+  border-bottom-color: var(--golden-accent);
+  font-weight: 600;
+}
+
+.my-collections-tabs {
+  border-bottom: 1px solid var(--border-color);
+}
