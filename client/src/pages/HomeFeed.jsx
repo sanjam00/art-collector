@@ -25,7 +25,6 @@ export default function HomeFeed(){
     navigate(`/collections/${collecData.id}`)
   }
 
-  // add bootstap classes
   return (
     <div className="home-feed">
       {loading && <p>Loading collections...</p>}

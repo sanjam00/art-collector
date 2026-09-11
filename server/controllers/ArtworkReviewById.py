@@ -12,10 +12,13 @@ class ArtworkReviewById(Resource):
   @jwt_required()
   def get(self, artwork_review_id):
     user_id = int(get_jwt_identity())
-    review = ArtworkReview.query.filter_by(id=artwork_review_id, user_id=user_id).first() # find review by id
+    review = ArtworkReview.query.filter_by(id=artwork_review_id).first() # find review by id
 
     if not review:
       return {'errors': ['Review not found']}, 404
+
+    if review.user_id != user_id:
+      return {'errors': ['403 Not authorized']}, 403
 
     return ArtworkReviewSchema().dump(review), 200
 
@@ -23,10 +26,13 @@ class ArtworkReviewById(Resource):
   @jwt_required()
   def patch(self, artwork_review_id):
     user_id = int(get_jwt_identity())
-    review = ArtworkReview.query.filter(ArtworkReview.id == artwork_review_id, ArtworkReview.user_id == user_id).first()
+    review = ArtworkReview.query.filter(ArtworkReview.id == artwork_review_id).first()
 
     if not review:
       return {'errors': ['Review not found']}, 404
+
+    if review.user_id != user_id:
+      return {'errors': ['403 Not authorized']}, 403
   
     request_json = request.get_json()
 
@@ -53,10 +59,13 @@ class ArtworkReviewById(Resource):
   @jwt_required()
   def delete(self, artwork_review_id):
     user_id = int(get_jwt_identity())
-    review = ArtworkReview.query.filter(ArtworkReview.id == artwork_review_id, ArtworkReview.user_id == user_id).first()
+    review = ArtworkReview.query.filter(ArtworkReview.id == artwork_review_id).first()
 
     if not review:
       return {'errors': ['Review not found']}, 404
+    
+    if review.user_id != user_id:
+      return {'errors': ['403 Not authorized']}, 403
 
     db.session.delete(review)
     db.session.commit()

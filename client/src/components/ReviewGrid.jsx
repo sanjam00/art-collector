@@ -69,8 +69,8 @@ export default function ReviewGrid({ artworkReviews = [], artistReviews = [], co
                 onClick={(e) => handleRemove(e, review)}
                 disabled={removingId === review.id}
               >
-                <img className="icon-default" src={removeIcon} alt="Remove from collection" />
-                <img className="icon-hover-state" src={removeFillIcon} alt="Remove from collection" />
+                <img className="icon-default" src={bookmarkDashIcon} alt="Remove from collection" />
+                <img className="icon-hover-state" src={bookmarkDashFillIcon} alt="Remove from collection" />
               </button>
             )}
 

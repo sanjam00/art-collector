@@ -21,7 +21,7 @@ class CollectionById(Resource):
 
     # allows access if it's their collection or if it's public, and denies when both cases are true
     if collec.user_id != user_id and not collec.is_public:
-      return {'errors': ['404 Collection not found']}, 404  # 404 not 403, to avoid confirming private collections exist
+      return {'errors': ['403 Not authorized']}, 403
 
     return CollectionSchema().dump(collec), 200
 
@@ -30,10 +30,13 @@ class CollectionById(Resource):
   def patch(self, collection_id):
     # identify user, ensure they're editing only their own collections
     user_id = int(get_jwt_identity())
-    collec = Collection.query.filter(Collection.id == collection_id, Collection.user_id == user_id).first()
+    collec = Collection.query.filter(Collection.id == collection_id).first()
 
     if not collec:
-      return {'errors': '404 Collection not found'}, 404
+      return {'errors': ['404 Collection not found']}, 404
+
+    if collec.user_id != user_id:
+      return {'errors': ['403 Not authorized']}, 403
 
     request_json = request.get_json()
 
@@ -56,10 +59,13 @@ class CollectionById(Resource):
   @jwt_required()
   def delete(self, collection_id):
     user_id = int(get_jwt_identity())
-    collec = Collection.query.filter(Collection.id == collection_id, Collection.user_id == user_id).first()
+    collec = Collection.query.filter(Collection.id == collection_id).first()
 
     if not collec:
-      return {'errors': '404 Collection not found'}, 404
+      return {'errors': ['404 Collection not found']}, 404
+    
+    if collec.user_id != user_id:
+      return {'errors': ['403 Not authorized']}, 403
 
     db.session.delete(collec)
     db.session.commit()
