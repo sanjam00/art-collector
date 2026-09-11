@@ -11,14 +11,10 @@ class ArtistReviewById(Resource):
   # get an artist review by id
   @jwt_required()
   def get(self, artist_review_id):
-    user_id = int(get_jwt_identity())
     review = ArtistReview.query.filter_by(id=artist_review_id).first() # find review by id
 
     if not review:
       return {'errors': ['Review not found']}, 404
-    
-    if review.user_id != user_id:
-      return {'errors': ['403 Not authorized']}, 403
 
     return ArtistReviewSchema().dump(review), 200
 
