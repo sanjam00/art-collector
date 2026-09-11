@@ -61,15 +61,18 @@ export default function ReviewGrid({ artworkReviews = [], artistReviews = [], co
       {combined.map((review) => (
         <div key={`${review.reviewType}-${review.id}`} className="review-item">
           <div className="card" onClick={() => handleReviewClick(review)}>
-            <button
-              className="icon-hover remove-review-btn"
-              type="button"
-              onClick={(e) => handleRemove(e, review)}
-              disabled={removingId === review.id}
-            >
-              <img className="icon-default" src={bookmarkDashIcon} alt="Remove from collection" />
-              <img className="icon-hover-state" src={bookmarkDashFillIcon} alt="Remove from collection" />
-            </button>
+            {/* make the remove button conditional */}
+            {onRemoved && (
+              <button
+                className="icon-hover remove-review-btn"
+                type="button"
+                onClick={(e) => handleRemove(e, review)}
+                disabled={removingId === review.id}
+              >
+                <img className="icon-default" src={removeIcon} alt="Remove from collection" />
+                <img className="icon-hover-state" src={removeFillIcon} alt="Remove from collection" />
+              </button>
+            )}
 
             <img
               className="card-img-top"

@@ -6,7 +6,7 @@ import { apiFetch } from "../api/api";
 // ArtistReviewIndex
 
 // needs params due to sort/filter
-export function getArtistReview (params = {}, token) {
+export function getArtistReview (token, params = {}) {
   const query = new URLSearchParams(params).toString();
   return apiFetch(`/artist-reviews?${query}`, token);
 }
