@@ -1,14 +1,9 @@
 .review-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  gap: 1rem;
+  /* display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); */
+  column-count: 2;
+  column-gap: 1rem;
   margin: 1em 2em;
-}
-
-.collection-item,
-.review-item {
-  width: 100%;
-  /* break-inside and inline-block are no longer needed — remove them */
 }
 
 .review-item {
@@ -51,8 +46,8 @@
 }
 
 .review-title {
+  font-family: var(--custom-font-body);
   margin: 0 0 0.2rem;
-  font-weight: 600;
   overflow-wrap: break-word;
 }
 
@@ -78,14 +73,22 @@
   background: #f2d86f;
 }
 
+/* @media (min-width: 576px) {
+  .review-grid {
+    column-count: 2;
+  }
+} */
+
 @media (min-width: 768px) {
   .review-grid {
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    /* grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); */
+    column-count: 3;
   }
 }
 
 @media (min-width: 1200px) {
   .review-grid {
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    /* grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); */
+    column-count: 4;
   }
 }

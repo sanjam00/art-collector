@@ -1,6 +1,5 @@
 .collection-grid {
   column-count: 2;
-  /* was 1 — two columns on mobile now */
   column-gap: 1rem;
   margin: 1em 2em;
 }
@@ -33,6 +32,7 @@
 
 .collection-item .card-body {
   padding: 0.4rem 0.75rem;
+  font-family: var(--custom-font-body);
 }
 
 @media (min-width: 576px) {
