@@ -1,0 +1,18 @@
+/* .offcanvas to beat the specificity rules and make sure my styles are applied */
+
+/* compact: default Offcanvas height, sized to content */
+.offcanvas.bottom-sheet-compact {
+  height: auto;
+  max-height: 50vh;
+}
+
+/* large: nearly full-screen */
+.offcanvas.bottom-sheet-large {
+  height: 90vh;
+}
+
+/* on desktop, give the large modal's body some breathing room / scroll if content overflows */
+.bottom-sheet-modal-large-body {
+  max-height: 75vh;
+  overflow-y: auto;
+}

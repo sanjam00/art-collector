@@ -1,0 +1,81 @@
+@media (min-width: 768px) {
+  .collection-page {
+  padding: 1em 4em;
+  max-width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+}
+
+@media (max-width: 768px) {
+  .collection-page {
+    padding: 1em 1em;
+    max-width: 100%;
+    overflow-x: hidden;
+    box-sizing: border-box;
+  }
+}
+
+.collection-page-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5em;
+}
+
+.collection-header {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  margin-bottom: 1em;
+}
+
+.collection-header-top {
+  display: flex;
+  gap: 1em;
+  align-items: flex-start;
+  min-width: 0;
+  /* lets flex children shrink below content size instead of overflowing */
+}
+
+.collection-header-img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.collection-header-text {
+  flex: 1;
+  min-width: 0;
+  /* same fix: without this, long titles/descriptions can force the row wider than the screen */
+}
+
+.collection-title {
+  margin: 0 0 1rem;
+  font-size: 2rem;
+  overflow-wrap: break-word;
+}
+
+.collection-description {
+  background: #f0ece4;
+  padding: .7rem 1rem;
+  border-radius: 8px;
+  margin: 0;
+  overflow-wrap: break-word;
+  font-size: 1.2rem;
+}
+
+.collection-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #666;
+  font-size: 1rem;
+  margin: .5rem 0;
+}
+
+.collection-owner {
+  margin: 0;
+}
