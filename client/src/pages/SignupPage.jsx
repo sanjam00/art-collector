@@ -44,7 +44,7 @@ export default function SignupPage(){
 
   return(
     <div className="signup-page">
-      <h1 id="site-name">Art Collector</h1>
+      <h1 id="site-name">Curatheque</h1>
 
       <div className="signup-form-container">
         <h2 className="signup-header">Create an account</h2>
