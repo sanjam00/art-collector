@@ -41,7 +41,7 @@ export default function LoginPage() {
   // add bootstap classes
   return (
     <div className="login-page">
-      <h1 id="site-name">Art Collector</h1>
+      <h1 id="site-name">Curatheque</h1>
 
       <div className="login-form-container">
         <h2 className="login-header">Log In</h2>
